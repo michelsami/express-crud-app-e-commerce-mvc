@@ -7,84 +7,109 @@ find below the project details with mongoDB implemented
 Backend project to support a shopping application, the application will support login, registration, authentication, and authorization
 
 General notes
-all data will be saved (in mongoDB) using arrays
+all data will be saved (in mongoDB) 
 
-APIS
-Users
+
+## APIS
+### Users
 POST /login
-
+```json
 {
     "email": "string",
     "password": "string",
 }
-Validation:
+```
+Validation: 
+- email must be a valid email
+- password: must be 8 characters with at least 1 capital and 1 small and 1 special character
 
-email must be a valid email
-password: must be 8 characters with at least 1 capital and 1 small and 1 special character
 returns:
-
+```json
 {
     "email": "string",
     "password": "string",
     "token": "string"
 }
-POST /registration
+```
 
+POST /registration
+```json
 {
     "email": "string",
     "password": "string",
     "passwordRepeat": "string"
 }
-Validation:
+```
+Validation: 
+- email must be a valid email
+- password: must be 8 characters with at least 1 capital and 1 small and 1 special character
+- passwordRepeat: must equal password
 
-email must be a valid email
-password: must be 8 characters with at least 1 capital and 1 small and 1 special character
-passwordRepeat: must equal password
 returns
-
+```json
 {
     "success": true
 }
-Categories
-check that the user is logged in POST /category
+```
+
+### Categories
+- check that the user is logged in
+POST /category
+```json
 {
     "name": "string",
 }
+```
 Validation:
+- name: string with at least 3 characters
 
-name: string with at least 3 characters
 PUT /category/:id
-
+```json
 {
     "name": "string",
 }
+```
 Validation:
+- name: string with at least 3 characters
 
-name: string with at least 3 characters
-GET /category returns list of categories GET /category/:id return the category with the correct_id DELETE /category/:id return the deleted category
+GET /category
+returns list of categories
+GET /category/:id
+return the category with the correct_id
+DELETE /category/:id
+return the deleted category
 
-Products
-check that the user is logged in POST /products
+### Products
+- check that the user is logged in
+POST /products
+```json
 {
     "name": "string",
     "price": "number",
     "category_id": "number"
 }
+```
 Validation:
+- name: string with at least 3 characters
+- price: Number 
+- category_id: Must be an existing in categories
 
-name: string with at least 3 characters
-price: Number
-category_id: Must be an existing in categories
 PUT /products/:id
-
+```json
 {
     "name": "string",
     "price": "number",
     "category_id": "number"
 }
+```
 Validation:
+- name: string with at least 3 characters
+- price: Number 
+- category_id: Must be an existing in categories
 
-name: string with at least 3 characters
-price: Number
-category_id: Must be an existing in categories
-GET /products returns list of products GET /products/:id return the product with the correct_id DELETE /products/:id return the deleted product
+GET /products
+returns list of products
+GET /products/:id
+return the product with the correct_id
+DELETE /products/:id
+return the deleted product
