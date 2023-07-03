@@ -1,2 +1,90 @@
 # express-crud-app-e-commerce-mvc
 E-comerce app with authentication and authorization "JWT" and validation using ZOD - Express.js - MVC project
+
+
+find below the project details with mongoDB implemented
+
+Backend project to support a shopping application, the application will support login, registration, authentication, and authorization
+
+General notes
+all data will be saved (in mongoDB) using arrays
+
+APIS
+Users
+POST /login
+
+{
+    "email": "string",
+    "password": "string",
+}
+Validation:
+
+email must be a valid email
+password: must be 8 characters with at least 1 capital and 1 small and 1 special character
+returns:
+
+{
+    "email": "string",
+    "password": "string",
+    "token": "string"
+}
+POST /registration
+
+{
+    "email": "string",
+    "password": "string",
+    "passwordRepeat": "string"
+}
+Validation:
+
+email must be a valid email
+password: must be 8 characters with at least 1 capital and 1 small and 1 special character
+passwordRepeat: must equal password
+returns
+
+{
+    "success": true
+}
+Categories
+check that the user is logged in POST /category
+{
+    "name": "string",
+}
+Validation:
+
+name: string with at least 3 characters
+PUT /category/:id
+
+{
+    "name": "string",
+}
+Validation:
+
+name: string with at least 3 characters
+GET /category returns list of categories GET /category/:id return the category with the correct_id DELETE /category/:id return the deleted category
+
+Products
+check that the user is logged in POST /products
+{
+    "name": "string",
+    "price": "number",
+    "category_id": "number"
+}
+Validation:
+
+name: string with at least 3 characters
+price: Number
+category_id: Must be an existing in categories
+PUT /products/:id
+
+{
+    "name": "string",
+    "price": "number",
+    "category_id": "number"
+}
+Validation:
+
+name: string with at least 3 characters
+price: Number
+category_id: Must be an existing in categories
+GET /products returns list of products GET /products/:id return the product with the correct_id DELETE /products/:id return the deleted product
